@@ -1,11 +1,19 @@
 <script marko-init>
   var hearthisUtil = require('./helpers/hearthis.js');
+  var youtubeUtil = require('./helpers/youtube.js');
+  var dateUtil = require('./helpers/dateHelper.js');
 </script>
 
 <layout-use(data.layout)>
     <layout-put into="body">
       <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
-      <h1>Entries For ${data.date}</h1>
+      <header class="page-header">
+        <h1>Entries For ${data.date}</h1>
+        <div class="btn-group">
+          <a class="btn btn-default" href="/${dateUtil.toUriSlug(data.previousDay.date)}" role="button" if(data.previousDay)>Prev</a>
+          <a class="btn btn-default" href="/${dateUtil.toUriSlug(data.nextDay.date)}" role="button" if(data.nextDay)>Next</a>
+        </div>
+      </header>
 
       <div class="panel panel-default" if(data.entries) for(entry in data.entries)>
         <div class="panel-body">
@@ -28,6 +36,14 @@
                   src="https://hearthis.at/embed/${hearthisUtil.shortUrlTrackId(entry.url)}/transparent_black/?hcolor=&color=&style=2&block_size=2&block_space=2&background=1&waveform=0&cover=0&autoplay=0&css="
                   frameborder="0"
                   allowtransparency></iframe>
+        </if>
+
+        <if(entry.kind === 'youtube')>
+          <iframe width="560"
+          height="315"
+          src="https://www.youtube.com/embed/${youtubeUtil.getYouTubeId(entry.url)}"
+          frameborder="0"
+          allowfullscreen></iframe>
         </if>
 
         <if(entry.kind === 'other')>
