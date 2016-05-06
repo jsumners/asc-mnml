@@ -1,0 +1,29 @@
+<layout-use(data.layout)>
+  <layout-put into="body">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Entry added</h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>Artist</dt>
+          <dd>${data.entry.artist}</dd>
+
+          <dt>Facebook Name</dt>
+          <dd>${data.entry.facebookName}</dd>
+
+          <dt>URL</dt>
+          <dd>${data.entry.url}</dd>
+
+          <dt>Kind</dt>
+          <dd>${data.entry.kind}</dd>
+
+          <dt if(data.entry.description)>Description</dt>
+          <dd if(data.entry.description)>
+            <blockquote>$!{data.entry.description}</blockquote>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </layout-put>
+</layout-use>
