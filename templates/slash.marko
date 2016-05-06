@@ -1,5 +1,6 @@
 <script marko-init>
   var hearthisUtil = require('./helpers/hearthis.js');
+  var youtubeUtil = require('./helpers/youtube.js');
 </script>
 
 <layout-use(data.layout)>
@@ -28,6 +29,14 @@
                   src="https://hearthis.at/embed/${hearthisUtil.shortUrlTrackId(entry.url)}/transparent_black/?hcolor=&color=&style=2&block_size=2&block_space=2&background=1&waveform=0&cover=0&autoplay=0&css="
                   frameborder="0"
                   allowtransparency></iframe>
+        </if>
+
+        <if(entry.kind === 'youtube')>
+          <iframe width="560"
+          height="315"
+          src="https://www.youtube.com/embed/${youtubeUtil.getYouTubeId(entry.url)}"
+          frameborder="0"
+          allowfullscreen></iframe>
         </if>
 
         <if(entry.kind === 'other')>
