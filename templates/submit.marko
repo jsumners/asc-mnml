@@ -1,0 +1,49 @@
+<layout-use(data.layout)>
+  <layout-put into="body">
+    <form action="/add/entry" method="post">
+      <div class="form-group">
+        <label for="artist">Artist</label>
+        <input class="form-control" id="artistInput" name="artist" placeholder="Artist">
+      </div>
+      <div class="form-group">
+        <label for="facebookName">Facebook Name</label>
+        <input class="form-control" id="facebookNameInput" name="facebookName" placeholder="Facebook Name (e.g. 'John Doe')">
+      </div>
+      <div class="form-group">
+        <label for="link">Link</label>
+        <input class="form-control" id="linkInput" name="link" placeholder="http://example.com/your-entry">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="descriptionInput" name="description" rows="4" placeholder="(optional)"></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <div class="panel panel-primary">
+      <div class="panel-title">Notes</div>
+      <div class="panel-body">
+        <dl>
+          <dt>Link</dt>
+          <dd>
+            <ul>
+              <li>
+                <tt>SoundCloud:</tt>
+                copy and paste the direct URL to the track's page.
+              </li>
+              <li>
+                <tt>HearThis.at:</tt>
+                copy and past the short link found within the 'Share => Embed' window.
+              </li>
+              <li>
+                <tt>Description:</tt>
+                not required. You can use
+                <a href="https://help.github.com/categories/writing-on-github/">GitHub Markdown</a>.
+              </li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </layout-put>
+</layout-use>
