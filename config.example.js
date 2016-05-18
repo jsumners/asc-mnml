@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   logger: {
@@ -21,4 +21,4 @@ module.exports = {
   soundcloud: {
     clientId: 'not used right now'
   }
-};
+}
