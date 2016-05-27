@@ -9,11 +9,18 @@ try {
   config = require('./config.js')
 } catch (e) {
   log.error('could not load config: %s', e.message)
+  log.debug(e.stack)
   process.exit(1)
 }
 
 const ioc = require('laic').laic.addNamespace('asc')
-log = pino(config.logger)
+
+let pretty
+if (config.logger.pretty) {
+  pretty = pino.pretty()
+  pretty.pipe(process.stdout)
+}
+log = pino(config.logger, pretty)
 ioc.register('logger', log, false)
 ioc.register('config', config, false)
 
@@ -27,26 +34,32 @@ const hapi = require('hapi')
 const server = new hapi.Server()
 ioc.register('server', server, false)
 
+server.connection(config.server.connection)
 server.register(
-  require('inert'),
+  [
+    {
+      register: require('hapi-pino'),
+      options: {
+        instance: log
+      }
+    },
+    require('inert')
+  ],
   (err) => {
     if (err) {
-      log.error('could not load inert: %s', err.message)
-      log.debug(err.stack)
-      return
+      server.log(['error'], `could not register hapi plugins: ${err.message}`)
+      server.log(['debug'], err.stack)
     }
   }
 )
 
-server.connection(config.server.connection)
 server.route(introduce('lib/routes'))
 server.start((err) => {
   if (err) {
-    log.error('server failed to start: %s', err.message)
-    log.debug(err.stack)
+    server.log(['error'], `server failed to start: ${err.message}`)
+    server.log(['debug'], err.stack)
     mongoose.disconnect()
     process.exit(1)
   }
-  log.info('server started: %s', server.info.uri)
   introduce('lib/processManagement')
 })

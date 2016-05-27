@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "hapi": "^13.3.0",
+    "hapi-pino": "^1.2.0",
     "inert": "^3.2.1",
     "introduce": "^0.2.0",
     "joi": "^8.0.5",
