@@ -24,7 +24,7 @@ gulp.task('pre-test', function preTest () {
     .pipe($.istanbul.hookRequire())
 })
 
-gulp.task('test', ['lint', 'pre-test'], function testTask () {
+gulp.task('test', ['pre-test'], function testTask () {
   return gulp
     .src(['test/*.js'])
     .pipe($.mocha({ui: 'qunit', reporter: 'min'}))
