@@ -1,9 +1,12 @@
-'use strict';
+'use strict'
 
 module.exports = {
   logger: {
     name: 'ascmnml',
-    level: 'info'
+    level: 'info',
+
+    // Enable pretty printing of logs. Should be false in production.
+    pretty: false
   },
 
   mongoose: {
@@ -21,4 +24,4 @@ module.exports = {
   soundcloud: {
     clientId: 'not used right now'
   }
-};
+}
