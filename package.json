@@ -45,11 +45,11 @@
     "introduce": "^0.2.0",
     "joi": "^8.0.5",
     "laic": "^0.3.4",
-    "marked": "^0.3.5",
     "marko": "^3.1.8",
     "moment": "^2.13.0",
     "mongoose": "^4.4.14",
     "pino": "^2.3.0",
+    "remarkable": "^1.6.2",
     "rest-promise": "^1.2.4",
     "then-yield": "0.0.1"
   }
